@@ -41,7 +41,7 @@ function setup() {
         }
     }
     matrixGenerator(40, 20, 15, 3, 15, 15)
-//    matrixGenerator(40, 20, 15, 0, 0, 0)
+//    matrixGenerator(40, 20, 40, 0, 0, 0)
     frameRate(5);
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');

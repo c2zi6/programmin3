@@ -1,7 +1,6 @@
 class Predator extends LivingCreature {
     constructor(x, y) {
-        super(x, y);
-        this.energy = 10;
+        super(x, y, 10);
     }
     getNewCoordinates() {
         this.directions = [
@@ -16,15 +15,7 @@ class Predator extends LivingCreature {
         ];
     }
     eat() {
-        if (Math.random() * 500 < 1) {
-            for (var i in grassEaterArr) {
-                if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
-                    grassEaterArr.splice(i, 1);
-                }
-            }
-            matrix[this.y][this.x] = 6;
-            virusArr.push(new Virus(this.x, this.y))
-        } else {
+        if (this.becomeInfected(predatorArr)) {
             this.getNewCoordinates();
             let found = this.chooseCell(1);
             let found2 = this.chooseCell(2);
@@ -88,11 +79,7 @@ class Predator extends LivingCreature {
         }
     }
     die() {
-        for (var i in predatorArr) {
-            if (this.x == predatorArr[i].x && this.y == predatorArr[i].y) {
-                predatorArr.splice(i, 1);
-            }
-        }
+        this.del(predatorArr);
         matrix[this.y][this.x] = 4;
     }
 }

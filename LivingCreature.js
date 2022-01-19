@@ -1,5 +1,5 @@
 class LivingCreature {
-    constructor(x, y) {
+    constructor(x, y, energy) {
         this.x = x;
         this.y = y;
         this.directions = [
@@ -12,6 +12,7 @@ class LivingCreature {
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
         ];
+        this.energy = energy;
     }
     chooseCell(char) {
         var found = [];
@@ -25,5 +26,22 @@ class LivingCreature {
             }
         }
         return found;
+    }
+    del(Arr) {
+        for (var i in Arr) {
+            if (this.x == Arr[i].x && this.y == Arr[i].y) {
+                Arr.splice(i, 1);
+            }
+        }
+    }
+    becomeInfected(Arr) {
+        if (Math.random() * 500 < 1) {
+            this.del(Arr);
+            matrix[this.y][this.x] = 6;
+            virusArr.push(new Virus(this.x, this.y))
+            return false;
+        } else {
+            return true;
+        }
     }
 }

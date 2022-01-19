@@ -1,7 +1,6 @@
 class Les extends LivingCreature {
     constructor(x, y) {        
-        super(x, y);
-        this.energy = 40;
+        super(x, y, 40);
         this.d = 0;
     }
     getNewCoordinates() {
@@ -17,15 +16,7 @@ class Les extends LivingCreature {
         ];
     }
     eat() {
-        if (Math.random() * 500 < 1) {
-            for (var i in grassEaterArr) {
-                if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
-                    grassEaterArr.splice(i, 1);
-                }
-            }
-            matrix[this.y][this.x] = 6;
-            virusArr.push(new Virus(this.x, this.y))
-        } else {
+        if (this.becomeInfected(lesArr)) {
             this.getNewCoordinates();
             let found = this.chooseCell(4);
             let exact = random(found);
@@ -83,11 +74,7 @@ class Les extends LivingCreature {
         }
     }
     die() {
-        for (var i in lesArr) {
-            if (this.x == lesArr[i].x && this.y == lesArr[i].y) {
-                lesArr.splice(i, 1);
-            }
-        }
+        super.del(lesArr);
         matrix[this.y][this.x] = 4;
     }
 }

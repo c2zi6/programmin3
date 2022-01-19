@@ -1,7 +1,6 @@
 class Virus extends LivingCreature {
     constructor(x, y) {
-        super(x, y);
-        this.energy = 15;
+        super(x, y, 15);
     }
     getNewCoordinates() {
         this.directions = [
@@ -62,11 +61,7 @@ class Virus extends LivingCreature {
         }
     }
     die() {
-        for (var i in virusArr) {
-            if (this.x == virusArr[i].x && this.y == virusArr[i].y) {
-                virusArr.splice(i, 1);
-            }
-        }
+        super.del(virusArr);
         matrix[this.y][this.x] = 0;
     }
 }
