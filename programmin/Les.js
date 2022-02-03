@@ -38,9 +38,11 @@ module.exports = class Les extends LivingCreature {
     }
     mul() {
         let found2 = [super.chooseCell(0), super.chooseCell(1)];
-        let found = found2[Math.round(Math.random() * 2)];
-        let exact = found[Math.round(Math.random() * found.length)];
+        let found = found2[Math.floor(Math.random() * 2)];
+        let exact = found[Math.floor(Math.random() * found.length)];
+
         if (exact) {
+
             var y = exact[1];
             var x = exact[0];
             for (var i in grassAr) {
@@ -55,8 +57,8 @@ module.exports = class Les extends LivingCreature {
     }
     move() {
         let found2 = [super.chooseCell(0), super.chooseCell(1)];
-        let found = found2[Math.round(Math.random() * 2)];
-        let exact = found[Math.round(Math.random() * found.length)];
+        let found = found2[Math.floor(Math.random() * 2)];
+        let exact = found[Math.floor(Math.random() * found.length)];
         if (exact) {
             let x = exact[0];
             let y = exact[1];

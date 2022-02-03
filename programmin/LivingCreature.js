@@ -20,7 +20,7 @@ module.exports = class LivingCreature {
             var x = this.directions[i][0];
             var y = this.directions[i][1];
             if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                console.log(matrix);
+                // console.log(matrix);
                 if (matrix[y][x] == char) {
                     found.push(this.directions[i]);
                 }
@@ -39,7 +39,7 @@ module.exports = class LivingCreature {
         if (Math.random() * 500 < 1) {
             this.del(Arr);
             matrix[this.y][this.x] = 6;
-            virusArr.push(new Virus(this.x, this.y))
+            // virusArr.push(new Virus(this.x, this.y))
             return false;
         } else {
             return true;

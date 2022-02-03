@@ -58,6 +58,12 @@ module.exports = class Virus extends LivingCreature {
                         predatorArr.splice(i, 1);
                     }
                 }
+                // for (var i in grassAr) {
+                //     if (x == grassAr[i].x && y == grassAr[i].y) {
+                //         grassAr.splice(i, 1);
+                //     }
+                // }
+                
             } else {
                 this.move();
             }
