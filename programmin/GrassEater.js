@@ -2,7 +2,7 @@ let LivingCreature = require('./LivingCreature');
 
 module.exports = class GrassEater extends LivingCreature {
     constructor(x, y) {
-        super(x, y, 12);
+        super(x, y, 15);
     }
     getNewCoordinates() {
         this.directions = [
@@ -29,7 +29,7 @@ module.exports = class GrassEater extends LivingCreature {
             let eater = new GrassEater(x, y);
             matrix[y][x] = 2;
             grassEaterArr.push(eater);
-            this.energy = 20;
+            this.energy = 25;
         }
     }
     eat() {
@@ -50,7 +50,7 @@ module.exports = class GrassEater extends LivingCreature {
                 this.x = x;
                 this.y = y;
 
-                if (this.energy > 30) {
+                if (this.energy > 18) {
                     this.mul();
                 }
             } else {

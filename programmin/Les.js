@@ -50,7 +50,7 @@ module.exports = class Les extends LivingCreature {
                     grassAr.splice(i, 1);
                 }
             }
-            matrix[y][x] = 3;
+            matrix[y][x] = 5;
             lesArr.push(new Les(x, y));
             this.energy = 10;
         }

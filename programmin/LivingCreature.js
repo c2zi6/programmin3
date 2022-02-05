@@ -1,3 +1,5 @@
+
+
 module.exports = class LivingCreature {
     constructor(x, y, energy) {
         this.x = x;
@@ -36,13 +38,14 @@ module.exports = class LivingCreature {
         }
     }
     becomeInfected(Arr) {
+        let Virus = require('./Virus');
         if (Math.random() * 500 < 1) {
             this.del(Arr);
             matrix[this.y][this.x] = 6;
-            // virusArr.push(new Virus(this.x, this.y))
+            virusArr.push(new Virus(this.x, this.y))
             return false;
         } else {
-            return true;
+             return true;
         }
     }
 }

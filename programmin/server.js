@@ -13,9 +13,8 @@ server.listen(3000, function () {
     console.log("runed on port:3000");
 });
 
-
-let n = 50;
 matrix = [];
+
 function matrixGenerator(matrixSize, grassCount, grassEaterCount, predatorCount, lesCount, lCount){
     for (let i = 0; i < matrixSize; i++) {
         matrix[i] = []
@@ -49,30 +48,12 @@ function matrixGenerator(matrixSize, grassCount, grassEaterCount, predatorCount,
         matrix[y][x] = 4;
     }
 }
-matrixGenerator(40, 20, 15, 3, 15, 15);
 
-// function rand(min, max) {
-//     return Math.random() * (max - min) + min;
-// }
-
-// for (let i = 0; i < n; i++) {
-//     matrix[i] = [];
-//     for (let j = 0; j < n; j++) {
-//         matrix[i][j] = Math.floor(rand(0, 6))
-
-//     }
-// }
-
-io.sockets.emit("send matrix", matrix);
-// console.log(matrix.length, '// 52 SERVER');
-// io.sockets.emit('send matrix', matrix);
-
- grassAr = [];
- grassEaterArr = [];
- predatorArr = [];
- lesArr = [];
- virusArr = [];
-
+grassAr = [];
+grassEaterArr = [];
+predatorArr = [];
+lesArr = [];
+virusArr = [];
 
 let Grass = require("./Grass");
 let GrassEater = require("./GrassEater");
@@ -81,6 +62,8 @@ let Predator = require("./Predator");
 let Virus = require("./Virus");
 
 function createObject() {
+    matrixGenerator(40, 30, 15, 10, 20, 50);
+//    matrixGenerator(40, 0, 0, 10, 10, 120);
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {
@@ -106,18 +89,7 @@ function createObject() {
             }
         }
     }
-    // console.log(matrix.length, '// 85 SERVER');
     io.sockets.emit('send matrix', matrix);
-}
-
-function restart() {
-    grassAr.clear();
-    predatorArr.clear();
-    grassEaterArr.clear();
-    lesArr.clear();
-    virusArr.clear();
-    matrixGenerator(40, 20, 15, 3, 15, 15);
-    io.sockets.emit("send matrix", matrix);
 }
 
 function game() {
@@ -136,15 +108,25 @@ function game() {
     for (var i in virusArr) {
         virusArr[i].infect();
     }
-    // console.log(matrix.length, '// 106 SERVER');
-    io.sockets.emit("send matrix", matrix);
+    io.sockets.emit('send matrix', matrix);
 }
 
+setInterval(game, 250);
 
-
-setInterval(game, 100);
+function restart() {
+    grassAr = [];
+    predatorArr = [];
+    grassEaterArr = [];
+    lesArr = [];
+    virusArr = [];
+    createObject();
+    io.sockets.emit("send matrix", matrix);
+}
 
 io.on('connection', function (socket) {
     createObject();
     socket.on("restart", restart);
 });
+
+
+
