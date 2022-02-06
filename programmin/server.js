@@ -76,7 +76,7 @@ function createObject() {
                 grassEaterArr.push(fr);
             } else if (matrix[y][x] == 3) {
                 matrix[y][x] = 3
-                pr = new Predator(x, y);
+                pr = new Predator(x, y, 40);
                 predatorArr.push(pr);
             } else if (matrix[y][x] == 5) {
                 matrix[y][x] = 5
@@ -122,10 +122,35 @@ function restart() {
     createObject();
     io.sockets.emit("send matrix", matrix);
 }
+function killles() {
+    lesArr = [];
+    for (var i = 0; i < matrix.length; i++) {
+        for (var j = 0; j < matrix.length; j++) {
+            if (matrix[i][j] == 5) {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+    io.sockets.emit("send matrix", matrix);
+}
+
+function spawnGrassEaters() {
+    var x = Math.round(Math.random() * matrix.length);
+    var y = Math.round(Math.random() * matrix.length);
+    if (matrix[y][x] != 0) {
+        spawnGrassEaters();
+    } else {
+        matrix[y][x] = 2;
+        grassEaterArr.push(new GrassEater(x, y));
+    }
+    io.sockets.emit("send matrix", matrix);
+}
 
 io.on('connection', function (socket) {
     createObject();
     socket.on("restart", restart);
+    socket.on("killles", killles);
+    socket.on("spawnGrassEaters", spawnGrassEaters);
 });
 
 

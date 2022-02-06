@@ -29,7 +29,7 @@ module.exports = class GrassEater extends LivingCreature {
             let eater = new GrassEater(x, y);
             matrix[y][x] = 2;
             grassEaterArr.push(eater);
-            this.energy = 25;
+            this.energy = 15;
         }
     }
     eat() {
@@ -50,7 +50,7 @@ module.exports = class GrassEater extends LivingCreature {
                 this.x = x;
                 this.y = y;
 
-                if (this.energy > 18) {
+                if (this.energy > 25) {
                     this.mul();
                 }
             } else {
@@ -59,7 +59,7 @@ module.exports = class GrassEater extends LivingCreature {
         }
     }
     move() {
-        let found = super.chooseCell(0);
+        let found = this.chooseCell(0);
         let exact = found[Math.round(Math.random() * found.length)];
         if (exact) {
             let x = exact[0];

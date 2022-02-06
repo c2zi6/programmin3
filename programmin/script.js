@@ -1,6 +1,6 @@
 var socket = io();
 
-var side = 10;
+var side = 15;
 
 function setup() {
     createCanvas(40 * side, 40 * side);
@@ -32,6 +32,12 @@ function nkarel(matrix) {
 
 function restart() {
     socket.emit("restart");
+}
+function killles() {
+    socket.emit("killles");
+}
+function spawnGrassEaters() {
+    socket.emit("spawnGrassEaters");
 }
 
 socket.on('send matrix', nkarel)

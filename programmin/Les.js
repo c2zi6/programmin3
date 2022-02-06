@@ -1,8 +1,8 @@
 let LivingCreature = require('./LivingCreature');
 
 module.exports = class Les extends LivingCreature {
-    constructor(x, y) {        
-        super(x, y, 40);
+    constructor(x, y, e) {        
+        super(x, y, e);
         this.d = 0;
     }
     getNewCoordinates() {
@@ -29,7 +29,7 @@ module.exports = class Les extends LivingCreature {
                 matrix[this.y][this.x] = 0;
                 this.y = y;
                 this.x = x;
-                this.energy += 5;
+//                this.energy += 5;
                 this.mul();
             } else {
                 this.move();
@@ -51,7 +51,7 @@ module.exports = class Les extends LivingCreature {
                 }
             }
             matrix[y][x] = 5;
-            lesArr.push(new Les(x, y));
+            lesArr.push(new Les(x, y, 10));
             this.energy = 10;
         }
     }
