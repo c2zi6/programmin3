@@ -3,7 +3,8 @@ var socket = io();
 var side = 15;
 
 function setup() {
-    createCanvas(40 * side, 40 * side);
+    var canvas = createCanvas(40 * side, 40 * side);
+    canvas.parent("canv");
     background('#acacac');
 }
 
@@ -33,11 +34,25 @@ function nkarel(matrix) {
 function restart() {
     socket.emit("restart");
 }
+function clear2() {
+    socket.emit("clear");
+}
 function killles() {
     socket.emit("killles");
 }
 function spawnGrassEaters() {
     socket.emit("spawnGrassEaters");
 }
+function spawnGrass() {
+    socket.emit("spawnGrass");
+}
+function spawnLes() {
+    socket.emit("spawnLes");
+}
+function spawnPredator() {
+    socket.emit("spawnPredator");
+}
 
-socket.on('send matrix', nkarel)
+socket.on('send matrix', nkarel);
+
+
